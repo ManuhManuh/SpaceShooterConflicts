@@ -40,23 +40,20 @@ public class PlayerMoving : MonoBehaviour {
     {
         if (!controlIsActive) return;
 
-#if UNITY_STANDALONE || UNITY_EDITOR    //if the current platform is not mobile, setting mouse handling
 
         var movementDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += movementDirection.normalized * 15 * Time.deltaTime;
 
-#endif
 
-#if UNITY_IOS || UNITY_ANDROID //if current platform is mobile,
 
-        if (Input.touchCount == 1) // if there is a touch
-        {
-            Touch touch = Input.touches[0];
-            Vector3 touchPosition = mainCamera.ScreenToWorldPoint(touch.position);  //calculating touch position in the world space
-            touchPosition.z = transform.position.z;
-            transform.position = Vector3.MoveTowards(transform.position, touchPosition, 30 * Time.deltaTime);
-        }
-#endif
+
+
+
+
+
+
+
+
         transform.position = new Vector3    //if 'Player' crossed the movement borders, returning him back
         (
             Mathf.Clamp(transform.position.x, borders.minX, borders.maxX),
