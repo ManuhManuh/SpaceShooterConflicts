@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// This script defines which sprite the 'Player" uses and its health.
@@ -32,7 +30,13 @@ public class Player : MonoBehaviour
     //'Player's' destruction procedure
     void Destruction()
     {
+
+
         Instantiate(destructionFX, transform.position, Quaternion.identity); //generating destruction visual effect and destroying the 'Player' object
+
+
+
+        FindObjectOfType<LevelController>().PlayerDestroyed();
         Destroy(gameObject);
     }
 }
